@@ -332,7 +332,7 @@ async function callDeepSeek(userMessage){
   const model=(s.model||'').trim()||DEEPSEEK_DEFAULT_MODEL;
   if(!apiKey)throw new Error('APIキーが設定されていません。設定から入力してください。');
   const convMessages=[{role:'system',content:getActiveSystemPrompt()},...messages,{role:'user',content:userMessage}];
-  const res=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:model,messages:convMessages,temperature:0.9,max_tokens:1500,top_p:0.95})});
+  const c=new AbortController();const t=setTimeout(()=>c.abort(),20000);try{const res=await fetch(endpoint,{method:'POST',signal:c.signal,headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:model,messages:convMessages,temperature:0.9,max_tokens:1500,top_p:0.95})});clearTimeout(t);}catch(e){clearTimeout(t);throw e;}
   if(!res.ok){const errText=await res.text().catch(()=>'');throw new Error('API エラー ('+res.status+'): '+errText);}
   const data=await res.json();
   return data.choices[0].message.content;
