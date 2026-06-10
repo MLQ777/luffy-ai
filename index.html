@@ -281,8 +281,8 @@ const settingsPromptEditor=document.getElementById('settingsPromptEditor');
 function loadSettings(){
   const stored=localStorage.getItem('luffy_settings');
   if(stored){try{const s=JSON.parse(stored);apiKeyInput.value=s.apiKey||'';settingsKeyInput.value=s.apiKey||'';settingsModelInput.value=s.model||DEEPSEEK_DEFAULT_MODEL;settingsEndpointInput.value=s.endpoint||DEEPSEEK_DEFAULT_ENDPOINT;}catch(e){}}
-  const apiKey=apiKeyInput.value.trim();
-  if(apiKey&&(!stored||!JSON.parse(stored).apiKey)){
+  const apiKey=apiKeyInput.value.trim();apiKey||localStorage.getItem('luffy_settings');
+  if(apiKey&&(!stored||!JSON.parse(stored||'{}').apiKey)){
     localStorage.setItem('luffy_settings',JSON.stringify({apiKey:apiKey,model:settingsModelInput.value||DEEPSEEK_DEFAULT_MODEL,endpoint:settingsEndpointInput.value||DEEPSEEK_DEFAULT_ENDPOINT}));
   }
   updateKeyStatus();
