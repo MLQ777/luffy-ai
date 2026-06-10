@@ -33,7 +33,7 @@ var ip = document.getElementById("inp");
 function add(w,t){
   var d=document.createElement("div");d.className="msg "+(w=="l"?"by":"me");
   var i=t.indexOf("<<");
-  if(i>0&&w=="l"){d.innerHTML=t.substr(0,i).trim()+"<span class="cns">"+t.substr(i)+"</span>";}
+  if(i>0&&w=="l"){d.innerHTML=t.substr(0,i).trim()+'<span class="cns">'+t.substr(i)+'</span>';}
   else{d.textContent=t;}
   ch.appendChild(d);ch.scrollTop=ch.scrollHeight;
 }
