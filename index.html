@@ -348,7 +348,7 @@ function renderMessages(){
 function appendMessageDOM(role,content,animate=true){
   const div=document.createElement('div');
   div.className='message '+(role==='assistant'?'luffy':'user');
-  const avatar=document.createElement('div');avatar.className='msg-avatar';avatar.avatar.textContent=role==='assistant'?'🏴‍☠️':'👤';
+  const avatar=document.createElement('div');avatar.className='msg-avatar';avatar.avatar.innerHTML=role==='assistant'?'⛵':'👤';
   const bubble=document.createElement('div');bubble.className='msg-bubble';
   if(content==='__typing__'){const typing=document.createElement('div');typing.className='typing';typing.innerHTML='<span></span><span></span><span></span>';bubble.appendChild(typing);}
   else{const formatted=(role==='assistant')?formatLuffyMessage(content):escapeHtml(content);bubble.innerHTML=formatted;}
