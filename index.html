@@ -91,7 +91,7 @@ function addMsg(who, txt){
   var d=document.createElement("div");d.className="msg "+who;
   var i=txt.lastIndexOf("「");
   if(i>=0&&who==="luffy"){
-    d.innerHTML=txt.substring(0,i).trim()+"<span class="cn">"+txt.substring(i)+"</span>";
+    d.innerHTML=txt.substring(0,i).trim()+'<span class="cn">'+txt.substring(i)+'</span>';
   }else{d.textContent=txt;}
   chat.appendChild(d);chat.scrollTop=chat.scrollHeight;
 }
